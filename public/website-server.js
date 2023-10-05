@@ -12,8 +12,8 @@ var os = require('os');
 var ifaces = os.networkInterfaces();
 
 // Public Self-Signed Certificates for HTTPS connection
-var privateKey = fs.readFileSync('./../certificates/privkey.pem', 'utf8');
-var certificate = fs.readFileSync('./../certificates/cert.pem', 'utf8');
+var privateKey = fs.readFileSync('../certificates/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('../certificates/cert.pem', 'utf8');
 
 var credentials = { key: privateKey, cert: certificate };
 var express = require('express');
@@ -65,6 +65,13 @@ httpsServer.listen(8443, LANAccess);
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
+});
+app.get('/t', function (req, res) {
+    res.sendFile(path.join(__dirname + '/teacher.html'));
+});
+
+app.get('/s', function (req, res) {
+    res.sendFile(path.join(__dirname + '/student.html'));
 });
 
 // Expose the css and js resources as "resources"
