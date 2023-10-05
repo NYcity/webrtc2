@@ -12,25 +12,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
      *
      * The iceServers on this example are public and can be used for your project.
      */
-    var peer = new Peer({
-        host: "localhost",
-        port: 9000,
-        path: '/peerjs',
-        debug: 3,
-        config: {
-            'iceServers': [
-                { url: 'stun:stun1.l.google.com:19302' },
-                // { url: 'stun1.l.google.com:19302' },
-                // { url: 'stun2.l.google.com:19302' },
-                // { url: 'stun3.l.google.com:19302' },
-                // { url: 'stun4.l.google.com:19302' },
-                // {
-                //     url: 'turn:numb.viagenie.ca',
-                //     credential: 'muazkh',
-                //     username: 'webrtc@live.com'
-                // }
-            ]
-        }
+    var peer = null;
+    // var peer = new Peer({
+    //     host: "localhost",
+    //     port: 9000,
+    //     path: '/peerjs',
+    //     debug: 3,
+    //     config: {
+    //         'iceServers': [
+    //             { url: 'stun:stun1.l.google.com:19302' },
+    //             // { url: 'stun1.l.google.com:19302' },
+    //             // { url: 'stun2.l.google.com:19302' },
+    //             // { url: 'stun3.l.google.com:19302' },
+    //             // { url: 'stun4.l.google.com:19302' },
+    //             // {
+    //             //     url: 'turn:numb.viagenie.ca',
+    //             //     credential: 'muazkh',
+    //             //     username: 'webrtc@live.com'
+    //             // }
+    //         ]
+    //     }
+    // });
+    peer = new Peer(null, {
+        debug: 2
     });
 
     // Once the initialization succeeds:
