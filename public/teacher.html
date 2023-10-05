@@ -12,6 +12,17 @@
 
 <body>
     <div class="container">
+        <div class="text-center">
+            <video id="my-camera" width="300" height="300" autoplay="autoplay" muted="true"
+                class="center-block"></video>
+            <span class="label label-info">You</span>
+        </div>
+        <div class="text-center">
+            <video id="peer-camera" width="300" height="300" autoplay="autoplay" class="center-block"></video>
+            <span class="label label-info" id="connected_peer"></span>
+        </div>
+    </div>
+    <div class="container">
         <div class="row">
             <div id="teacherId"></div>
             <table class="display">

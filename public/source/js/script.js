@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
         config: {
             'iceServers': [
                 { url: 'stun:stun1.l.google.com:19302' },
-                { url: 'stun1.l.google.com:19302' },
-                { url: 'stun2.l.google.com:19302' },
-                { url: 'stun3.l.google.com:19302' },
-                { url: 'stun4.l.google.com:19302' },
+                // { url: 'stun1.l.google.com:19302' },
+                // { url: 'stun2.l.google.com:19302' },
+                // { url: 'stun3.l.google.com:19302' },
+                // { url: 'stun4.l.google.com:19302' },
                 // {
                 //     url: 'turn:numb.viagenie.ca',
                 //     credential: 'muazkh',
