@@ -60,8 +60,8 @@ Object.keys(ifaces).forEach(function (ifname) {
 var LANAccess = "0.0.0.0";
 // For http
 httpServer.listen(8080, LANAccess);
-// For https
-httpsServer.listen(8443, LANAccess);
+// // For https
+// httpsServer.listen(8443, LANAccess);
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
