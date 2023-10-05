@@ -2,6 +2,6 @@
     "name": "peer-messenger-peerserver",
     "version": "0.0.1",
     "dependencies": {
-        "peer": "^0.5.3"
+        "peer": "^1.0.1"
     }
 }

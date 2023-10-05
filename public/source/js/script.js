@@ -1,5 +1,5 @@
 // When the DOM is ready
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function (event) {
     var peer_id;
     var username;
     var conn;
@@ -20,11 +20,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
         config: {
             'iceServers': [
                 { url: 'stun:stun1.l.google.com:19302' },
-                {
-                    url: 'turn:numb.viagenie.ca',
-                    credential: 'muazkh',
-                    username: 'webrtc@live.com'
-                }
+                { url: 'stun1.l.google.com:19302' },
+                { url: 'stun2.l.google.com:19302' },
+                { url: 'stun3.l.google.com:19302' },
+                { url: 'stun4.l.google.com:19302' },
+                // {
+                //     url: 'turn:numb.viagenie.ca',
+                //     credential: 'muazkh',
+                //     username: 'webrtc@live.com'
+                // }
             ]
         }
     });
@@ -33,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Show the ID that allows other user to connect to your session.
     peer.on('open', function () {
         document.getElementById("peer-id-label").innerHTML = peer.id;
+        console.log("peer.id : ", peer.id)
     });
 
     // When someone connects to your session:
@@ -53,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.getElementById("connected_peer").innerHTML = connection.metadata.username;
     });
 
-    peer.on('error', function(err){
+    peer.on('error', function (err) {
         alert("An error ocurred with peer: " + err);
         console.error(err);
     });
@@ -64,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     peer.on('call', function (call) {
         var acceptsCall = confirm("Videocall incoming, do you want to accept it ?");
 
-        if(acceptsCall){
+        if (acceptsCall) {
             // Answer the call with your own video/audio stream
             call.answer(window.localStream);
 
@@ -77,12 +82,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
             });
 
             // Handle when the call finishes
-            call.on('close', function(){
+            call.on('close', function () {
                 alert("The videocall has finished");
             });
 
             // use call.close() to finish a call
-        }else{
+        } else {
             console.log("Call denied !");
         }
     });
@@ -97,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
         // Request audio an video
-        navigator.getUserMedia({ audio: true, video: true }, callbacks.success , callbacks.error);
+        navigator.getUserMedia({ audio: true, video: true }, callbacks.success, callbacks.error);
     }
 
     /**
@@ -125,14 +130,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var orientation = "text-left";
 
         // If the message is yours, set text to right !
-        if(data.from == username){
+        if (data.from == username) {
             orientation = "text-right"
         }
 
-        var messageHTML =  '<a href="javascript:void(0);" class="list-group-item' + orientation + '">';
-                messageHTML += '<h4 class="list-group-item-heading">'+ data.from +'</h4>';
-                messageHTML += '<p class="list-group-item-text">'+ data.text +'</p>';
-            messageHTML += '</a>';
+        var messageHTML = '<a href="javascript:void(0);" class="list-group-item' + orientation + '">';
+        messageHTML += '<h4 class="list-group-item-heading">' + data.from + '</h4>';
+        messageHTML += '<p class="list-group-item-text">' + data.text + '</p>';
+        messageHTML += '</a>';
 
         document.getElementById("messages").innerHTML += messageHTML;
     }
@@ -140,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /**
      * Handle the send message button
      */
-    document.getElementById("send-message").addEventListener("click", function(){
+    document.getElementById("send-message").addEventListener("click", function () {
         // Get the text to send
         var text = document.getElementById("message").value;
 
@@ -162,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /**
      *  Request a videocall the other user
      */
-    document.getElementById("call").addEventListener("click", function(){
+    document.getElementById("call").addEventListener("click", function () {
         console.log('Calling to ' + peer_id);
         console.log(peer);
 
@@ -178,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /**
      * On click the connect button, initialize connection with peer
      */
-    document.getElementById("connect-to-peer-btn").addEventListener("click", function(){
+    document.getElementById("connect-to-peer-btn").addEventListener("click", function () {
         username = document.getElementById("name").value;
         peer_id = document.getElementById("peer_id").value;
 
@@ -190,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             });
 
             conn.on('data', handleMessage);
-        }else{
+        } else {
             alert("You need to provide a peer to connect with !");
             return false;
         }
@@ -203,11 +208,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * Initialize application by requesting your own video to test !
      */
     requestLocalVideo({
-        success: function(stream){
+        success: function (stream) {
             window.localStream = stream;
             onReceiveStream(stream, 'my-camera');
         },
-        error: function(err){
+        error: function (err) {
             alert("Cannot get access to your camera and video !");
             console.error(err);
         }
