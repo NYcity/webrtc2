@@ -20,7 +20,7 @@ var express = require('express');
 var app = express();
 
 var httpServer = http.createServer(app);
-// var httpsServer = https.createServer(credentials, app);
+var httpsServer = https.createServer(credentials, app);
 
 /**
  *  Show in the console the URL access for other devices in the network
@@ -61,7 +61,7 @@ var LANAccess = "0.0.0.0";
 // For http
 httpServer.listen(8080, LANAccess);
 // // For https
-// httpsServer.listen(8443, LANAccess);
+httpsServer.listen(8443, LANAccess);
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
